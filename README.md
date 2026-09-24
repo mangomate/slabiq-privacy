@@ -2,6 +2,8 @@
 
 **Last updated: 24 September 2026**
 
+See also: [Terms of Use](https://mangomate.github.io/slabiq-privacy/terms/)
+
 SlabIQ is an estimating app for Australian concreters. You give it a slab or
 foundation plan, it reads the zones, dimensions and specifications, and it
 turns them into a priced quote. This policy explains what information SlabIQ
