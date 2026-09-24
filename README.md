@@ -14,9 +14,14 @@ handles, where it goes, how long it is kept, and the choices you have.
 - The things that leave your device are the **plans you choose to scan**, any
   **job description** you type for a scan, **supplier price sheets you choose
   to import**, and the **measurements and rates** needed to price a quote.
-  These are processed and then discarded. They are not kept as a library.
-- Plans, job descriptions and price sheets are read by an AI model provided by
-  **Anthropic**. We do **not** use your plans to train AI models.
+  Our server deletes them within about 30 minutes. We don't keep a library
+  of your plans.
+- Plans, job descriptions and price sheets are read by AI models provided by
+  **Anthropic**. Neither we nor Anthropic use them to train AI models.
+  Anthropic keeps them for up to 30 days for safety monitoring, then deletes
+  them.
+- The app asks for your OK before it sends any file to the AI for the first
+  time.
 - Subscriptions are handled by **Apple / Google** and **RevenueCat**. We never
   see your card details.
 - We do not sell your data, show ads, or use advertising or analytics
@@ -75,6 +80,10 @@ Plans often contain other people's personal information, such as the property
 owner's name, the site address, or the designer's and engineer's details. We
 don't look for or pull out that information. Please upload only plans you are
 allowed to share for pricing a job.
+
+Before the first plan or price sheet is sent, the app asks for your
+permission to share it with our AI provider. You can say no, and nothing is
+uploaded. You can still build estimates by entering measurements manually.
 
 **Retention:** files written to the server during a scan are deleted when the
 scan finishes. So that a multi-step scan doesn't need the same plan uploaded
@@ -160,15 +169,23 @@ work:
 
 | Provider | What they receive | Why |
 |---|---|---|
-| **Anthropic** (Claude API) | Plans and rendered page images, job descriptions, price sheet contents | AI reading of plans and price sheets |
+| **Anthropic** (Claude API) | Plans and rendered page images, job descriptions, price sheet contents | AI reading of plans and price sheets (kept up to 30 days, see below) |
 | **Railway** | Everything sent to our server, while it is being processed | Hosting our processing server |
 | **RevenueCat** | Anonymous app user ID, purchase history, device/app info | Managing subscriptions |
 | **Apple / Google** | Purchase and payment details | Billing, under their own terms |
 
-Under its commercial terms, Anthropic does not use data sent through its API
-to train its models. It may keep that data for a limited time for safety and
-abuse monitoring. See [anthropic.com/legal/privacy](https://www.anthropic.com/legal/privacy)
-and [revenuecat.com/privacy](https://www.revenuecat.com/privacy).
+**About Anthropic.** Anthropic's
+[Commercial Terms](https://www.anthropic.com/legal/commercial-terms) state
+that it "may not train models on Customer Content" sent through its API.
+SlabIQ reads plans with Claude Fable 5, which Anthropic classes as a
+"Covered Model". For these models, Anthropic keeps prompts and outputs for
+**30 days** to detect misuse, then deletes them. Our other AI steps (page
+ranking and price-sheet checking) use models whose content Anthropic does not
+keep by default. If Anthropic's automated safety systems flag a request, it
+may keep that request for up to 2 years. Details:
+[API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
+
+RevenueCat's policy is at [revenuecat.com/privacy](https://www.revenuecat.com/privacy).
 
 We do not sell or rent personal information, and we don't share it for
 advertising.
