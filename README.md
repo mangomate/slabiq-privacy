@@ -215,8 +215,9 @@ in "How long we keep information", or until you ask us to delete them.
 that don't produce a usable result (for any reason), page previews, Find
 Scale and price-sheet imports don't count. Re-scanning the same plan page in
 the same estimate is free if you scanned that estimate this month or in
-either of the previous two calendar months. A different page or a different
-plan file counts as a new scan. Editing the job description doesn't.
+either of the previous two calendar months (UTC). A different page or a
+different plan file counts as a new scan. Editing the job description
+doesn't.
 
 **Scan records.** To count scans against your monthly allowance, give you free
 re-scans of the same plan, and answer billing questions, our server keeps a
@@ -232,11 +233,11 @@ record of each AI plan scan, linked to your install identifier:
   what the read cost us.
 
 Scan records linked to your install are kept until the end of the second
-calendar month after that estimate's last scan, so free re-scans keep
+calendar month (UTC) after that estimate's last scan, so free re-scans keep
 working, then de-identified: we keep only monthly cost totals, with no
 install, estimate or plan information, for 5 years. If our server restarts in
 the middle of a scan, the unfinished scan is released without charge within
-about a week.
+about 10 days.
 
 **Daily usage record.** Every install that uses AI features has a small usage
 record, kept for about 2 days. It holds this day's count of failed reads, this
@@ -248,9 +249,9 @@ A read counts as failed if it finishes but its result can't be used
 (including when the AI declines the plan or its answer is cut off or
 unreadable). Scans stopped before they finish — because you cancelled, the
 connection dropped or our time limit was reached — are counted separately,
-with a higher daily limit. Errors on the AI provider's side don't count
-against you, though every read's AI cost counts toward the daily usage
-limit.
+with a higher daily limit. Errors on the AI provider's side, including a
+provider response that ends early, don't count against you, though their AI
+cost still counts toward the daily usage limit, as every read's cost does.
 
 **Plans that keep failing.** If a plan's result can't be used, the server keeps
 a fingerprint of that plan file (not the plan) for about 2 days, so the same
@@ -326,11 +327,13 @@ way. You can turn these permissions off at any time in your device settings.
   (our server): deleted after 24 hours (in practice, within about 25 hours).
   *Why:* so a dropped connection can recover the result.
 - **Scan records linked to your install** (our server): until the end of the
-  second calendar month after that estimate's last scan, then de-identified.
+  second calendar month (UTC) after that estimate's last scan, then
+  de-identified.
   They say which estimates were scanned, with a fingerprint of the plan file
   (not the plan itself) and the AI cost. *Why:* your scan allowance, free
   re-scans and billing questions. If our server restarts in the middle of a
-  scan, the unfinished scan is released without charge within about a week.
+  scan, the unfinished scan is released without charge within about 10
+  days.
 - **De-identified AI cost records** (our server): kept only as monthly totals,
   with no install, estimate or plan information, for 5 years, then deleted.
   *Why:* business and tax record-keeping.
@@ -460,9 +463,12 @@ what we kept and why.
 **What we delete:** your device security record, your scan and attempt
 counts, your daily usage record, your scan records and the plan fingerprints
 linked to your install, any recovery copies of your scan results, any store
-purchase-lineage records for your install (unless the subscription is shared
-with another of your devices), and the link between your install and any
-other records.
+purchase-lineage records for your install, and the link between your install
+and any other records.
+
+If a subscription is shared with another of your devices (this isn't live
+yet), the scan records, recovery copies and purchase-lineage records that
+belong to that shared subscription are kept for the other device.
 
 **What we keep, and why:**
 
@@ -474,8 +480,7 @@ other records.
   reports and error lines), until they expire under our hosting provider's
   retention period.
 - **Per-network counters**, which are kept under a hashed IP address rather
-  than your install identifier, and any fingerprints of failing plans that
-  aren't linked to your install. Both expire after about 2 days.
+  than your install identifier, until they expire after about 2 days.
 - **Copies at Anthropic**, which Anthropic deletes under its own retention
   (see "About Anthropic").
 - **Purchase records** that Apple, Google and RevenueCat hold under their own

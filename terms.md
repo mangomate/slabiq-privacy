@@ -64,7 +64,7 @@ Every plan is subject to the fair-use limits in section 4.
   Reads that don't produce a usable result (for any reason), page previews,
   Find Scale and price-sheet imports don't count. Re-scanning the same plan
   page in the same estimate is free if you scanned that estimate this month
-  or in either of the previous two calendar months. A different page or a
+  or in either of the previous two calendar months (UTC). A different page or a
   different plan file counts as a new scan. Editing the job description
   doesn't. Monthly allowances start again at the beginning of each calendar
   month, counted in UTC (10am on the 1st in Queensland).
