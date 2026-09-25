@@ -1,6 +1,6 @@
 # SlabIQ Privacy Policy
 
-**Last updated: 24 September 2026**
+**Last updated: 26 September 2026**
 
 See also: [Terms of Use](https://mangomate.github.io/slabiq-privacy/terms/)
 
@@ -11,21 +11,32 @@ handles, where it goes, how long it is kept, and the choices you have.
 
 **The short version**
 
-- SlabIQ has **no user accounts** and **no customer database**. Your quotes,
-  clients, business details and price lists stay **on your device**.
+- SlabIQ has **no user accounts**. Your quotes, clients, business details and
+  price lists stay **on your device**.
 - The things that leave your device are the **plans you choose to scan**, any
   **job description** you type for a scan, **supplier price sheets you choose
   to import**, and the **measurements and rates** needed to price a quote.
-  Our server deletes them within about 30 minutes. We don't keep a library
-  of your plans.
+  Our server deletes uploaded files within about 30 minutes. It keeps a
+  recovery copy of each scan's result for 24 hours, in case your connection
+  drops. We don't keep a library of your plans.
 - Plans, job descriptions and price sheets are read by AI models provided by
-  **Anthropic**. Neither we nor Anthropic use them to train AI models.
-  Anthropic keeps them for up to 30 days for safety monitoring, then deletes
-  them.
-- The app asks for your OK before it sends any file to the AI for the first
-  time.
-- Subscriptions are handled by **Apple / Google** and **RevenueCat**. We never
-  see your card details.
+  **Anthropic**, in the United States. Neither we nor Anthropic use them to
+  train AI models. Anthropic keeps them for up to 30 days, depending on the
+  model, or up to 2 years if its safety systems flag a request (see "About
+  Anthropic" below).
+- The app asks for your OK before anything is sent to the AI. If you say no,
+  nothing is sent, and you can still build estimates by entering measurements
+  yourself.
+- Our server keeps a small amount of information about each install so it can
+  count scans and enforce fair-use limits: a random identifier, records of
+  recent scans (with a fingerprint of each plan file, not the plan itself)
+  and, on iPhone and iPad, a record of the device's Apple security key. It
+  doesn't include your name, your quotes or your plans. See "How long we keep
+  information".
+- You can ask us to delete what our server holds about your install from the
+  app's **Your data** section.
+- Paid subscriptions are coming soon. They will be handled by **Apple /
+  Google** and **RevenueCat**. We never see your card details.
 - We do not sell your data, show ads, or use advertising or analytics
   trackers.
 
@@ -34,8 +45,12 @@ handles, where it goes, how long it is kept, and the choices you have.
 ## Who we are
 
 SlabIQ is developed and operated by Jake Murphy, a sole trader in Queensland,
-Australia ("we", "us"). We handle personal information in line with the
-*Privacy Act 1988* (Cth) and the Australian Privacy Principles.
+Australia ("we", "us"). We are an Australian business, and we handle personal
+information in line with the *Privacy Act 1988* (Cth) and the Australian
+Privacy Principles (APPs).
+
+You don't have to give us your name or contact details to use SlabIQ. We only
+learn them if you email us.
 
 Questions or requests: **slabiqapp@gmail.com**
 
@@ -43,124 +58,261 @@ Questions or requests: **slabiqapp@gmail.com**
 
 ## Information stored on your device
 
-The following is saved in the app's own storage on your phone or tablet. It is
-**not** sent to us, and we cannot access it:
+The following is saved in the app's own storage on your phone or tablet. It
+stays there unless a feature described under "Information that leaves your
+device" sends part of it (for example, measurements for a price calculation).
+We can't access your device.
 
 - **Estimates and quotes**: project names, slab zones, dimensions, beam and
-  footing details, quantities, rates, labour, extras and totals.
+  footing details, quantities, rates, labour, extras, markup, totals and
+  invoices.
 - **Client details**: client name, phone number, email address and site
   address.
 - **Your business details**: business name, ABN and the bank details you add
   so they appear on your quotes and invoices.
 - **Price lists and settings**: your material and labour rates, including
-  rates you have imported from a supplier price sheet.
-- **App housekeeping**: whether you have finished onboarding, how many free
-  estimates you have used, a short-lived access token, and a random install
-  identifier (explained below).
+  rates you have imported from a supplier price sheet, and any zone templates
+  you save.
+- **App housekeeping**: whether you have finished onboarding and whether you
+  have agreed to AI sharing, how many free estimates and AI scans you have
+  used this month, any extra scans you've bought, the last subscription level
+  the store reported, a random install identifier, and a short-lived access
+  token. The token and, on iPhone and iPad, a reference to the app's Apple
+  security key are kept in your device's secure storage (Keychain or Android
+  Keystore).
 - **The last crash report**, if the app has crashed (see "Crash reports").
 
 Quote PDFs are generated on your device. When you share or email a quote, the
 app hands it to your device's share sheet or email app. What happens next is
 up to you and the app you choose.
 
+**Backups.** You can export a backup of your saved estimates, including client
+details and invoices, as a file. The app hands it to your share sheet; what
+happens next is up to you. The app tidies up its own copies of backup files
+older than about a day the next time you export. Your phone's own backup
+(iCloud or Google) may also include SlabIQ's saved estimates, depending on
+your device settings.
+
 ---
 
 ## Information that leaves your device
 
+Unless a section says otherwise, everything below is sent over an encrypted
+(HTTPS) connection to our server, which runs on our hosting provider, Railway.
+
+### Your OK comes first
+
+The first time you open SlabIQ, the last welcome screen explains what is sent
+to our AI provider and asks for your OK. If you were already using SlabIQ
+before this screen was added, the app asks once, the next time you open it.
+
+- If you choose **I agree**, the app remembers your answer on your device.
+  Nothing is sent until you choose to scan a plan, find a scale or import a
+  price sheet.
+- If you choose **Not now**, nothing is sent. The AI features ask again at the
+  moment you use them.
+- **Nothing is sent to the AI without your OK.** Manual estimating works
+  without it.
+
 ### 1. Plans you scan
 
 When you use the plan reader, the PDF pages or photos you choose are uploaded
-over an encrypted (HTTPS) connection to our processing server. The server:
+to our server. The server:
 
 - extracts text, dimensions and schedules from the drawing with its own
-  software, and
+  software,
+- for a PDF with several pages, may send pictures of the pages to the AI to
+  work out which one shows the slab (a page preview), and
 - sends the plan, and the page images it renders from it, to **Anthropic's
-  Claude AI API** to identify slab zones, dimensions, beams and
-  specifications.
+  Claude AI** to identify slab zones, dimensions, beams and specifications.
 
 Plans often contain other people's personal information, such as the property
 owner's name, the site address, or the designer's and engineer's details. We
 don't look for or pull out that information. Please upload only plans you are
 allowed to share for pricing a job.
 
-Before the first plan or price sheet is sent, the app asks for your
-permission to share it with our AI provider. You can say no, and nothing is
-uploaded. You can still build estimates by entering measurements manually.
+**Finding the scale.** When you use Find Scale on a PDF plan, the server first
+looks for the printed scale in the drawing's text. If it can't find one, it
+sends an image of that one page to Anthropic to read the printed scale. This
+doesn't use a scan from your allowance. Photos are never sent for this.
 
-**Retention:** files written to the server during a scan are deleted when the
+**How long:** files written to the server during a scan are deleted when the
 scan finishes. So that a multi-step scan doesn't need the same plan uploaded
-twice, an uploaded PDF may be held in a temporary cache for **up to about 30
-minutes**, then it is deleted. We do not keep copies of your plans.
+twice, an uploaded file may be held in a temporary cache for **up to about 30
+minutes**, then it is deleted. We don't keep copies of your plans.
+
+So that a dropped connection doesn't lose a finished scan, the server keeps a
+**recovery copy of the scan's result for 24 hours**: the zones, measurements
+and text the AI read from the plan, which can include a picture of the plan
+page. It is used only to give the result back to you, and it is deleted after
+24 hours.
 
 ### 2. Job descriptions
 
 When you scan a plan you can type a short description of the actual job, such
 as "garage slab only". This text is sent with the plan to Anthropic so the AI
-can focus on the right scope. It is not stored on our server.
+can focus on the right scope. Our server doesn't store the text itself (see
+section 6 for the fingerprint it keeps).
 
 ### 3. Supplier price sheets
 
-When you import a supplier price list spreadsheet, the file is sent
-to our server. It is converted to text there and sent to Anthropic, which
-matches the supplier's prices to the app's price fields and double-checks
-them. The file isn't stored. Our server log records only that an import
-happened, with the install identifier, the file size and how many prices were
-matched.
+When you import a supplier price list spreadsheet, the file is sent to our
+server. It is converted to text there and sent to Anthropic, which matches the
+supplier's prices to the app's price fields and double-checks them. The file
+isn't stored, and an import doesn't use a scan from your allowance. Our server
+log records only that an import happened, with the install identifier, the
+file size and how many prices were matched.
 
 ### 4. Quote calculations
 
 To price a quote, the app sends the slab measurements and your rates (zones,
 waste percentage, material and labour prices, extras) to our server's
-calculation engine. **No client or business details are sent.** This step
+calculation engine. **No client contact details or bank details are sent**,
+though zone names and any notes you type into the measurements are. This step
 doesn't use AI, and nothing is stored.
 
-### 5. Install identifier and access tokens
+### 5. Install identifier and device security
 
-The first time the app contacts our server, it creates a **random install
-identifier**. The identifier isn't linked to your name, email, phone number or
-device hardware, and we don't combine it with any other data. The app swaps it
-for a 24-hour access token. We use the identifier only to:
+SlabIQ doesn't use accounts. Instead, each install gets a random identifier.
+On iPhone and iPad, the app also creates a security key with Apple's App
+Attest, and our server gives that install its own random identifier. On
+Android, the app creates the random identifier itself. The identifier isn't
+your name, email or phone number. The app swaps it for a short-lived access
+token (15 minutes to 24 hours).
 
-- enforce fair-use limits (scans per month and requests per hour),
-- protect the service from abuse and runaway costs, and
+We use the identifier only to:
+
+- count your scans and enforce fair-use limits (see section 6),
+- protect the service from abuse and runaway costs,
+- check your subscription with RevenueCat, once paid subscriptions launch (see
+  section 9), and
 - link a crash or error report to a single install when we are
   troubleshooting.
 
-Usage counters are kept only in the server's memory and reset whenever the
-server restarts. Deleting the app deletes the identifier.
+**Device security record.** For iPhone and iPad installs, our server keeps the
+security key's ID and public key, the random identifier, when it was set up,
+the app version, and a counter Apple uses to stop replayed requests. It also
+keeps one-time security challenges, which expire after a few minutes. We keep
+the record while you use SlabIQ, so we can recognise a genuine copy of the app
+on your device, and delete it after 12 months without use.
 
-### 6. Crash reports
+Deleting the app removes the identifier stored in the app. On iPhone and iPad,
+the device's secure storage may keep the security key after the app is
+deleted. The records on our server stay until they are removed on the schedule
+in "How long we keep information", or until you ask us to delete them.
 
-If the app crashes, it saves a short report on your device and sends a copy
-to our server. The report contains the error message, the technical stack
-trace, your platform (iOS or Android), the time, and the install identifier.
-It does not include your quotes, client details or plans. Crash reports go
-into our server logs so we can fix bugs.
+### 6. Scan records and fair-use limits
 
-### 7. Technical data
+**What counts as a scan.** One plan successfully processed is one scan. Failed
+reads, page previews, Find Scale and price-sheet imports don't count, and
+re-reading the same plan file in the same estimate is free.
+
+**Scan records.** To count scans against your monthly allowance, give you free
+re-scans of the same plan, and answer billing questions, our server keeps a
+record of each AI plan scan, linked to your install identifier:
+
+- which estimate was scanned (the app's reference number for it, not its name
+  or contents);
+- a fingerprint of what you scanned (the plan file and any job description).
+  A fingerprint is a short code worked out from the file. It lets us recognise
+  the same plan again, but the plan can't be rebuilt from it; and
+- when the scan happened, whether it succeeded, and what the AI read cost us.
+
+We keep these records linked to your install for the current month and the
+two months before it. After that we de-identify them: we remove the link to
+your install and the plan fingerprint, and keep only the AI cost figures.
+
+**Other limits.** To protect the service from abuse and runaway costs, the
+server also keeps:
+
+- this month's count of scans and AI attempts for each install, for the
+  current month only;
+- hourly request limits, in the server's memory;
+- short-lived counters of failed reads, kept for up to 24 hours, linked to
+  your install identifier or IP address and, if one plan keeps failing, to a
+  fingerprint of that plan; and
+- the total AI cost for the whole service each day, which isn't about any
+  person, kept for about 13 months.
+
+### 7. Crash reports
+
+If the app crashes, it saves a short report on your device and sends a copy to
+our server: the error message, the technical stack trace, your platform (iOS
+or Android), the time, and your install identifier. It is designed not to
+include your quotes, client details or plans, but an error message can
+occasionally include text that was on screen. Crash reports go into our
+hosting provider's logs so we can fix bugs.
+
+### 8. Technical data
 
 Like any internet service, our server and its hosting provider see technical
 information about each request, such as your IP address and the time of the
-request. We use your IP address, in memory only, for rate limiting and abuse
-protection. Our hosting provider may keep standard request logs under its own
-policies.
+request. We use your IP address for rate limiting and abuse protection: in the
+server's memory for hourly limits, and in the short-lived failed-read counters
+described in section 6. Our hosting provider keeps standard request logs under
+its own policies.
 
-### 8. Subscriptions and payments
+### 9. Subscriptions and payments
 
-SlabIQ has a free tier and paid subscriptions. Purchases are processed by
-**Apple (App Store)** or **Google (Play Store)**, and we never receive your
-payment card details. Subscription status is managed by **RevenueCat**, which
-receives an anonymous app user ID, your purchase and subscription history, and
-basic device and app information such as platform and app version. Our server
-may check your subscription status with RevenueCat to decide which usage
-limits apply to you.
+**Paid subscriptions are coming soon.** SlabIQ will have a free tier and paid
+plans (see the [Terms of Use](https://mangomate.github.io/slabiq-privacy/terms/)).
+When they launch:
 
-### 9. Camera and photos
+- Purchases will be processed by **Apple (App Store)** or **Google (Play
+  Store)**. We never receive your payment card details.
+- Subscription status will be managed by **RevenueCat**, which will receive
+  your install identifier (see section 5), your purchase and subscription
+  history, and basic device and app information such as platform and app
+  version.
+- Our server may check your subscription status with RevenueCat, using that
+  identifier, to decide which plan's limits apply to you.
 
-SlabIQ asks for camera and photo library access **only** so you can
-photograph a plan or pick a saved plan image to scan. It doesn't read your
-photos in any other way. You can turn off these permissions at any time in
-your device settings.
+### 10. Camera and photos
+
+SlabIQ asks for camera access **only** so you can photograph a plan. On iPhone
+and iPad it also asks for photo library access so you can pick a saved plan
+image; on Android you pick an image with the system picker, which doesn't give
+SlabIQ access to your whole library. It doesn't read your photos in any other
+way. You can turn these permissions off at any time in your device settings.
+
+---
+
+## How long we keep information
+
+- **Uploaded plans, photos and price sheets** (our server): only while they
+  are being processed, and deleted within about 30 minutes. *Why:* to read
+  them.
+- **Recovery copy of a scan result**, which can include a picture of the plan
+  page (our server): 24 hours. *Why:* so a dropped connection can recover the
+  result.
+- **Scan records linked to your install** (our server): the current month
+  plus the two previous months. They say which estimates were scanned, with a
+  fingerprint of the plan file (not the plan itself) and the AI cost. *Why:*
+  your scan allowance, free re-scans and billing questions. After that they're
+  de-identified: the link to your install and the plan fingerprint are
+  removed, and only the AI cost figures are kept.
+- **De-identified AI cost records** (our server): 5 years, then deleted.
+  *Why:* business and tax record-keeping. They can't be linked to you.
+- **This month's scan and attempt counts** (our server): the current month
+  only. *Why:* fair-use limits.
+- **iPhone and iPad device security record** (our server): while you use
+  SlabIQ, and deleted after 12 months without use. *Why:* to recognise a
+  genuine copy of the app on your device.
+- **Failed-read counters** (our server): up to 24 hours. *Why:* to stop
+  repeated failed reads that cost money and could be abuse.
+- **Service-wide daily AI cost totals** (our server, not about any person):
+  about 13 months. *Why:* the daily spending cap and tracking our costs.
+- **Server logs and crash reports** (our hosting provider): for our hosting
+  provider's log-retention period. <!-- CONFIRM: Railway log retention -->
+  *Why:* fixing bugs and keeping the service secure.
+- **Copies at Anthropic**: up to 30 days depending on the model, or up to 2
+  years if Anthropic's safety systems flag a request (see "About Anthropic").
+  *Why:* Anthropic's own misuse and safety monitoring.
+- **Purchase records** (Apple, Google and RevenueCat, once paid subscriptions
+  launch): under their own policies.
+- **Everything on your device**: until you delete it or uninstall the app.
+  Backups you export, and your phone's own backups, are yours to keep or
+  delete.
 
 ---
 
@@ -169,22 +321,28 @@ your device settings.
 We share information only with the service providers SlabIQ needs in order to
 work:
 
-| Provider | What they receive | Why |
+| Provider | What it receives | Why |
 |---|---|---|
-| **Anthropic** (Claude API) | Plans and rendered page images, job descriptions, price sheet contents | AI reading of plans and price sheets (kept up to 30 days, see below) |
-| **Railway** | Everything sent to our server, while it is being processed | Hosting our processing server |
-| **RevenueCat** | Anonymous app user ID, purchase history, device/app info | Managing subscriptions |
-| **Apple / Google** | Purchase and payment details | Billing, under their own terms |
+| **Anthropic** (Claude API) | Plans and rendered page images, job descriptions, price sheet contents, single pages for Find Scale | AI reading of plans, scales and price sheets (retention: see below) |
+| **Railway** | Everything sent to our server while it is processed; the server records described in sections 1, 5 and 6; server logs | Hosting our server |
+| **RevenueCat** (once paid subscriptions launch) | Install identifier, purchase history, device/app info | Managing subscriptions |
+| **Apple / Google** (once paid subscriptions launch) | Purchase and payment details | Billing, under their own terms |
 
 **About Anthropic.** Anthropic's
 [Commercial Terms](https://www.anthropic.com/legal/commercial-terms) state
 that it "may not train models on Customer Content" sent through its API.
-SlabIQ reads plans with Claude Fable 5, which Anthropic classes as a
-"Covered Model". For these models, Anthropic keeps prompts and outputs for
-**30 days** to detect misuse, then deletes them. Our other AI steps (page
-ranking and price-sheet checking) use models whose content Anthropic does not
-keep by default. If Anthropic's automated safety systems flag a request, it
-may keep that request for up to 2 years. Details:
+SlabIQ reads plans and finds scales with Claude Opus 5.5. Page previews
+(working out which page shows the slab) use Claude Sonnet 5, and price-sheet
+reading uses Claude Sonnet 5 and Claude Haiku 4.5. If one of these models is
+busy, the request may be passed to another Claude model.
+
+Anthropic keeps what we send for **up to 30 days, depending on the model**,
+then deletes it. Anthropic's current documentation says it doesn't keep
+prompts and outputs for most models by default, but keeps them for 30 days
+for a group of "Covered Models" (such as Claude Fable 5), to detect misuse. We
+may sometimes switch plan reading back to a Covered Model for a while, for
+example if another model has problems. If Anthropic's automated safety systems
+flag a request, it may keep that request for up to 2 years. Details:
 [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
 
 RevenueCat's policy is at [revenuecat.com/privacy](https://www.revenuecat.com/privacy).
@@ -194,19 +352,31 @@ advertising.
 
 ### Overseas processing
 
-Our server and our providers may process information **outside Australia**,
-mainly in the **United States**. We use established providers that have their
-own security and privacy commitments. By using the plan reader or price-sheet
-import, you understand that the files you choose will be processed overseas.
+Some information is sent to, and processed by, providers outside Australia:
+
+- **Anthropic** processes plans, page images, job descriptions and price
+  sheets in the **United States**.
+- **Railway**, our hosting provider, runs our server and holds its records and
+  logs outside Australia, mainly in the **United States**.
+  <!-- CONFIRM: Railway region -->
+- **RevenueCat, Apple and Google** (once paid subscriptions launch) may process
+  purchase and subscription information in the United States and other
+  countries.
+
+We use established providers that have their own security and privacy
+commitments, and we send them only what they need to do their job. By using
+the plan reader, Find Scale or price-sheet import, you understand that the
+files you choose will be processed overseas.
 
 ---
 
 ## Security
 
 All communication between the app and our server is encrypted with HTTPS. Our
-AI features need an access token that is issued to each install, and they are
-protected by rate limits, usage quotas and a daily spending cap. Plan files
-are held only as long as processing needs them.
+AI features need an access token issued to each install; on iPhone and iPad
+that token is only issued to a genuine copy of the app, checked with Apple's
+App Attest. They're also protected by rate limits, usage quotas and a daily
+spending cap. Plan files are held only as long as processing needs them.
 
 Data on your device is protected by your device's own security, such as your
 passcode and encryption. No system is perfectly secure. If you're not
@@ -217,21 +387,68 @@ please don't upload it.
 
 ## Your choices and rights
 
-- **Your on-device data:** you can edit or delete estimates, clients and
-  business details in the app. Uninstalling SlabIQ deletes all of its local
-  data, including the install identifier.
-- **Server-side data:** we don't keep an account or profile about you. Short
-  technical logs, such as crash and error lines, are the only records linked
-  to an install. If you want to ask what we hold, or ask us to delete
-  something, email **slabiqapp@gmail.com**. If you can, include your install
-  identifier.
-- **Subscriptions:** you can manage or cancel your subscription in your App
-  Store or Google Play account settings. For data RevenueCat holds, you can
-  also contact RevenueCat directly.
-- **Complaints:** if you have a privacy concern, please contact us first and
-  we'll respond within 30 days. If you're not satisfied with our response, you
-  can complain to the Office of the Australian Information Commissioner at
-  [oaic.gov.au](https://www.oaic.gov.au).
+### Your on-device data
+
+You can edit or delete estimates, clients and business details in the app.
+Uninstalling SlabIQ deletes its local data, but not backup files you've
+exported or shared, copies in your phone's own backup, or (on iPhone and iPad)
+its security key in secure storage.
+
+### Asking us to delete server data
+
+We don't keep an account or profile about you. To ask us to delete what our
+server holds about your install, open the **Your data** section in SlabIQ. It
+shows your install identifier and has a **Request data deletion** button,
+which starts an email to **slabiqapp@gmail.com**. Make sure the email includes
+the install identifier shown in that section, so we can find your records.
+You can also email us directly.
+
+We'll respond within 30 days, and we'll email you exactly what we deleted,
+what we kept and why.
+
+**What we delete:** your device security record, your scan and attempt
+counts, your scan records and plan fingerprints, any recovery copies of your
+scan results, and the link between your install and any other records.
+
+**What we keep, and why:**
+
+- **De-identified AI cost records**: kept for 5 years for business and tax
+  record-keeping. They can no longer be linked to you.
+- **Service-wide daily totals**, which aren't about any person.
+- **Server logs**, until they expire under our hosting provider's retention
+  period.
+- **Copies at Anthropic**, which Anthropic deletes under its own retention
+  (see "About Anthropic").
+- **Purchase records** that Apple, Google and RevenueCat hold under their own
+  policies. You can also contact RevenueCat directly about data it holds.
+
+After a deletion, SlabIQ may need to set up its connection to our server again
+the next time you use an online feature.
+
+### Access and correction
+
+You can ask for a copy of the personal information we hold about you, and ask
+us to correct it if it's wrong, out of date or incomplete. Email
+**slabiqapp@gmail.com**, including your install identifier if you can. We'll
+respond within 30 days, and there's no charge to make a request. Because
+SlabIQ has no accounts, we may ask for your install identifier or other
+details to check the records are yours before we share them. If we can't do
+what you ask, we'll tell you why in writing and how you can complain.
+
+### Subscriptions
+
+Once paid subscriptions launch, you can manage or cancel your subscription in
+your App Store or Google Play account settings. For data RevenueCat holds, you
+can also contact RevenueCat directly.
+
+### Complaints
+
+If you have a privacy concern, or think we haven't handled your information
+in line with the Australian Privacy Principles, please contact us first at
+**slabiqapp@gmail.com**. We'll respond within 30 days. If you're not satisfied
+with our response, you can complain to the Office of the Australian
+Information Commissioner (OAIC) at [oaic.gov.au](https://www.oaic.gov.au) or on
+1300 363 992.
 
 ---
 

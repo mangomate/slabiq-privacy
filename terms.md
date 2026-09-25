@@ -5,7 +5,7 @@ title: SlabIQ Terms of Use
 
 # SlabIQ Terms of Use
 
-**Last updated: 24 September 2026**
+**Last updated: 26 September 2026**
 
 These Terms of Use ("Terms") are an agreement between you and Jake Murphy, a
 sole trader in Queensland, Australia, trading as SlabIQ ("we", "us"). They
@@ -47,13 +47,26 @@ under-ordering concrete or materials, under-quoting, or disputes with clients.
 
 ## 3. Free use, subscriptions and billing
 
-- **Free tier.** New users get a limited number of free estimates. The app
-  shows the current allowance.
-- **Subscriptions.** Paid plans (currently **Solo** and **Unlimited**) are
-  auto-renewing subscriptions sold through the Apple App Store or Google Play.
-  The app shows each plan's price, billing period and inclusions (such as the
-  monthly number of AI plan scans) before you buy. The price shown by the
-  store at purchase is the price that applies.
+**Paid subscriptions are coming soon.** The parts of this section about paid
+plans apply once they launch.
+
+| Plan | Price | Includes |
+|---|---|---|
+| **Free** | Free | 3 free estimates |
+| **Pro** | A$129 a month | 35 AI plan scans a month |
+| **Max** | A$229 a month | 250 AI plan scans a month |
+
+Every plan is subject to the fair-use limits in section 4.
+
+- **What counts as a scan.** One plan successfully processed is one scan.
+  Failed reads, page previews, Find Scale and price-sheet imports don't
+  count, and re-reading the same plan file in the same estimate is free.
+  Monthly allowances start again at the beginning of each calendar month,
+  counted in UTC (10am on the 1st in Queensland).
+- **Subscriptions.** Pro and Max are auto-renewing subscriptions sold through
+  the Apple App Store or Google Play. The app shows each plan's price, billing
+  period and inclusions before you buy. The price shown by the store at
+  purchase is the price that applies.
 - **Scan packs.** Where offered, extra AI scans can be bought as a one-off
   in-app purchase.
 - **Auto-renewal.** A subscription renews automatically at the end of each
@@ -74,11 +87,18 @@ under-ordering concrete or materials, under-quoting, or disputes with clients.
 
 ## 4. Fair use and availability
 
-AI scanning costs us real money per scan, so SlabIQ has fair-use limits: a
-monthly scan quota for each install, hourly rate limits, and a daily capacity
-cap across the whole service. We may also pause AI scanning temporarily for
-maintenance or safety. When scanning is unavailable, your saved quotes and
-manual estimating still work.
+AI scanning costs us real money per scan, so SlabIQ has fair-use limits on
+every plan:
+
+- a monthly scan allowance for each plan (see section 3);
+- hourly limits on requests;
+- limits on repeated failed reads, such as the same plan failing again and
+  again; and
+- a daily capacity cap across the whole service.
+
+We may also temporarily pause AI scanning for maintenance or safety. When
+scanning is unavailable, your saved quotes still open and you can still build
+estimates manually, though new calculations need an internet connection.
 
 SlabIQ relies on third-party services such as Anthropic, Railway, RevenueCat,
 Apple and Google. We aim to keep it running well, but we don't promise it
@@ -96,10 +116,10 @@ will always be available, uninterrupted or error-free.
   to use for pricing a job. Plans often include other people's personal
   information, and you are responsible for having a proper reason to handle
   it.
-- **Backups.** Your quotes, clients and settings are stored only on your
-  device. We can't recover them if you lose your device, uninstall the app or
-  clear its data, so keep your own copies (for example, exported PDFs) of
-  anything important.
+- **Backups.** Your quotes, clients and settings are stored on your device,
+  not with us. We can't recover them if you lose your device, uninstall the
+  app or clear its data. Use the app's backup export, and keep your own copies
+  (for example, exported PDFs) of anything important.
 - **Your quotes and invoices.** Documents you create in SlabIQ are yours to
   issue. You are responsible for their accuracy and for meeting your tax,
   GST, licensing and contract obligations.
