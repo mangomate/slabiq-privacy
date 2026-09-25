@@ -5,7 +5,13 @@ title: SlabIQ Terms of Use
 
 # SlabIQ Terms of Use
 
-**Last updated: 24 September 2026**
+<!--
+DO NOT PUBLISH THIS VERSION YET. It goes live together with the Privacy Policy on this
+branch, and only once the Sharing section there is ready (before
+SLABIQ_CONTRIBUTIONS_ENABLED is turned on). Set "Last updated" to the publish date.
+-->
+
+**Last updated: 25 September 2026**
 
 These Terms of Use ("Terms") are an agreement between you and Jake Murphy, a
 sole trader in Queensland, Australia, trading as SlabIQ ("we", "us"). They
@@ -23,7 +29,8 @@ we handle your information. It forms part of these Terms.
 SlabIQ helps concreters estimate slab and foundation jobs. It can read a plan
 you upload, identify zones, dimensions, beams and specifications, calculate
 quantities (concrete, mesh, reinforcement, edge and internal beams, footings
-and similar items), apply your rates, and produce quotes and invoices.
+and similar items), apply your rates, and produce quotes and invoices. It can
+also read delivery dockets and supplier invoices you scan after a pour.
 
 SlabIQ is a **business tool** for people in the construction industry. You
 must be 18 or over to use it.
@@ -74,11 +81,12 @@ under-ordering concrete or materials, under-quoting, or disputes with clients.
 
 ## 4. Fair use and availability
 
-AI scanning costs us real money per scan, so SlabIQ has fair-use limits: a
-monthly scan quota for each install, hourly rate limits, and a daily capacity
-cap across the whole service. We may also pause AI scanning temporarily for
-maintenance or safety. When scanning is unavailable, your saved quotes and
-manual estimating still work.
+AI scanning costs us real money per scan, so SlabIQ has fair-use limits on every
+plan, including Unlimited: a monthly scan limit per install, hourly rate limits,
+and a daily capacity cap across the whole service. We may also temporarily pause
+AI scanning for maintenance or safety. When scanning is unavailable, your saved
+quotes still open and you can still build estimates manually, though new
+calculations need an internet connection.
 
 SlabIQ relies on third-party services such as Anthropic, Railway, RevenueCat,
 Apple and Google. We aim to keep it running well, but we don't promise it
@@ -86,20 +94,32 @@ will always be available, uninterrupted or error-free.
 
 ## 5. Your content and responsibilities
 
-- **You own your content.** That includes the plans, photos, price sheets, job
-  descriptions, estimates and client details you create or upload.
+<!-- [LAWYER] The "Licence to process" and "Sharing (optional)" bullets and the last
+sentence of "Your rights to upload" are new for the opt-in Sharing programme. Confirm the
+licence scope, its end on withdrawal (except statistics already worked out from many
+jobs), and the user's warranty about entitlement to share third-party plans. -->
+
+- **You own your content.** That includes the plans, photos, price sheets,
+  dockets, invoices, job descriptions, estimates and client details you create
+  or upload.
 - **Licence to process.** You give us a limited, non-exclusive licence to
-  process the content you upload, only as needed to provide SlabIQ. This
-  includes sending it to our AI provider as described in the Privacy Policy.
-  We don't use your plans to train AI models.
+  process what you upload, only as needed to provide SlabIQ, including sending
+  it to our AI provider.
+- **Sharing (optional).** If you turn on Sharing, you also give us a
+  non-exclusive licence to keep, copy, redact and study the shared jobs to find
+  and fix SlabIQ's mistakes, as the Privacy Policy describes. That licence ends
+  when you turn Sharing off or delete your shared jobs, except for statistics
+  already worked out from many jobs. We never use your content to train
+  anyone's AI models.
 - **Your rights to upload.** Upload only plans and documents you are allowed
   to use for pricing a job. Plans often include other people's personal
   information, and you are responsible for having a proper reason to handle
-  it.
-- **Backups.** Your quotes, clients and settings are stored only on your
-  device. We can't recover them if you lose your device, uninstall the app or
-  clear its data, so keep your own copies (for example, exported PDFs) of
-  anything important.
+  it. If you share jobs with us, you confirm you're entitled to share those
+  plans and documents for that purpose.
+- **Backups.** Your quotes, clients and settings are stored on your device,
+  not with us. We can't recover them if you lose your device, uninstall the
+  app or clear its data. Use the app's backup export, and keep your own copies
+  (for example, exported PDFs) of anything important.
 - **Your quotes and invoices.** Documents you create in SlabIQ are yours to
   issue. You are responsible for their accuracy and for meeting your tax,
   GST, licensing and contract obligations.
