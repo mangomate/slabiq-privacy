@@ -58,14 +58,16 @@ plans apply once they launch.
 
 Every plan is subject to the fair-use limits in section 4.
 
+- **Free plan.** You get 3 free estimates in total. Scanning a different page
+  or plan into the same estimate uses another free estimate.
 - **What counts as a scan.** One plan successfully processed is one scan.
-  Reads that fail or whose result can't be used, page previews, Find Scale
-  and price-sheet imports don't count. Re-scanning the same plan page in the
-  same estimate is free while that estimate has been scanned within the last
-  3 months. A different page or a different plan file counts as a new scan.
-  Editing the job description doesn't. Monthly allowances start again at the
-  beginning of each calendar month, counted in UTC (10am on the 1st in
-  Queensland).
+  Reads that don't produce a usable result (for any reason), page previews,
+  Find Scale and price-sheet imports don't count. Re-scanning the same plan
+  page in the same estimate is free if you scanned that estimate this month
+  or in either of the previous two calendar months. A different page or a
+  different plan file counts as a new scan. Editing the job description
+  doesn't. Monthly allowances start again at the beginning of each calendar
+  month, counted in UTC (10am on the 1st in Queensland).
 - **Subscriptions.** Pro and Max are auto-renewing subscriptions sold through
   the Apple App Store or Google Play. The app shows each plan's price, billing
   period and inclusions before you buy. The price shown by the store at
@@ -101,6 +103,7 @@ every plan:
 - limits for each internet connection, which can affect people who share a
   network (for example, an office or site Wi-Fi);
 - a monthly limit on AI read attempts for each device;
+- a daily limit on scans that are stopped before they finish;
 - limits on repeated failed reads, such as the same plan failing again and
   again; and
 - a daily capacity cap across the whole service.
