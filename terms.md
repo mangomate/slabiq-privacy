@@ -59,10 +59,13 @@ plans apply once they launch.
 Every plan is subject to the fair-use limits in section 4.
 
 - **What counts as a scan.** One plan successfully processed is one scan.
-  Failed reads, page previews, Find Scale and price-sheet imports don't
-  count, and re-reading the same plan file in the same estimate is free.
-  Monthly allowances start again at the beginning of each calendar month,
-  counted in UTC (10am on the 1st in Queensland).
+  Reads that fail or whose result can't be used, page previews, Find Scale
+  and price-sheet imports don't count. Re-scanning the same plan page in the
+  same estimate is free while that estimate has been scanned within the last
+  3 months. A different page or a different plan file counts as a new scan.
+  Editing the job description doesn't. Monthly allowances start again at the
+  beginning of each calendar month, counted in UTC (10am on the 1st in
+  Queensland).
 - **Subscriptions.** Pro and Max are auto-renewing subscriptions sold through
   the Apple App Store or Google Play. The app shows each plan's price, billing
   period and inclusions before you buy. The price shown by the store at
@@ -91,7 +94,13 @@ AI scanning costs us real money per scan, so SlabIQ has fair-use limits on
 every plan:
 
 - a monthly scan allowance for each plan (see section 3);
+- a daily AI usage limit for each device, set well above normal use. Every
+  plan has one, including Max;
+- a daily limit on Find Scale reads;
 - hourly limits on requests;
+- limits for each internet connection, which can affect people who share a
+  network (for example, an office or site Wi-Fi);
+- a monthly limit on AI read attempts for each device;
 - limits on repeated failed reads, such as the same plan failing again and
   again; and
 - a daily capacity cap across the whole service.

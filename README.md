@@ -29,10 +29,10 @@ handles, where it goes, how long it is kept, and the choices you have.
   yourself.
 - Our server keeps a small amount of information about each install so it can
   count scans and enforce fair-use limits: a random identifier, records of
-  recent scans (with a fingerprint of each plan file, not the plan itself)
-  and, on iPhone and iPad, a record of the device's Apple security key. It
-  doesn't include your name, your quotes or your plans. See "How long we keep
-  information".
+  recent scans (with a fingerprint of each plan file, not the plan itself), a
+  short-lived daily usage record and, on iPhone and iPad, a record of the
+  device's Apple security key. It doesn't include your name, your quotes or
+  your plans. See "How long we keep information".
 - You can ask us to delete what our server holds about your install from the
   app's **Your data** section.
 - Paid subscriptions are coming soon. They will be handled by **Apple /
@@ -74,12 +74,15 @@ We can't access your device.
   rates you have imported from a supplier price sheet, and any zone templates
   you save.
 - **App housekeeping**: whether you have finished onboarding and whether you
-  have agreed to AI sharing, how many free estimates and AI scans you have
-  used this month, any extra scans you've bought, the last subscription level
-  the store reported, a random install identifier, and a short-lived access
-  token. The token and, on iPhone and iPad, a reference to the app's Apple
-  security key are kept in your device's secure storage (Keychain or Android
-  Keystore).
+  have agreed to AI sharing, how many of your 3 free estimates you have used
+  (3 in total, not per month), how many AI scans you have used this month,
+  fingerprints of the plan files you've scanned (so the app knows which
+  re-scans are free), a history of how long your scans took (so it can
+  estimate waiting times), any extra scans you've bought, the last
+  subscription level the store reported, a random install identifier, and a
+  short-lived access token. The token and, on iPhone and iPad, a reference to
+  the app's Apple security key are kept in your device's secure storage
+  (Keychain or Android Keystore).
 - **The last crash report**, if the app has crashed (see "Crash reports").
 
 Quote PDFs are generated on your device. When you share or email a quote, the
@@ -134,7 +137,8 @@ allowed to share for pricing a job.
 **Finding the scale.** When you use Find Scale on a PDF plan, the server first
 looks for the printed scale in the drawing's text. If it can't find one, it
 sends an image of that one page to Anthropic to read the printed scale. This
-doesn't use a scan from your allowance. Photos are never sent for this.
+doesn't use a scan from your allowance, though Find Scale reads are counted
+towards a daily limit (see section 6). Photos are never sent for this.
 
 **How long:** files written to the server during a scan are deleted when the
 scan finishes. So that a multi-step scan doesn't need the same plan uploaded
@@ -143,9 +147,9 @@ minutes**, then it is deleted. We don't keep copies of your plans.
 
 So that a dropped connection doesn't lose a finished scan, the server keeps a
 **recovery copy of the scan's result for 24 hours**: the zones, measurements
-and text the AI read from the plan, which can include a picture of the plan
-page. It is used only to give the result back to you, and it is deleted after
-24 hours.
+and text the AI read from the plan, including a picture of the plan page. It
+is used only to give the result back to you. It is deleted after 24 hours (in
+practice, within about 25 hours, because the clean-up runs on a schedule).
 
 ### 2. Job descriptions
 
@@ -191,10 +195,12 @@ We use the identifier only to:
 
 **Device security record.** For iPhone and iPad installs, our server keeps the
 security key's ID and public key, the random identifier, when it was set up,
-the app version, and a counter Apple uses to stop replayed requests. It also
-keeps one-time security challenges, which expire after a few minutes. We keep
-the record while you use SlabIQ, so we can recognise a genuine copy of the app
-on your device, and delete it after 12 months without use.
+the day it was last used, the app version, Apple's validation category for
+the device, whether the record has been revoked, and a counter Apple uses to
+stop replayed requests. It also keeps one-time security challenges, which
+expire after a few minutes. We keep the record while you use SlabIQ, so we can
+recognise a genuine copy of the app on your device, and delete it after 12
+months without use.
 
 Deleting the app removes the identifier stored in the app. On iPhone and iPad,
 the device's secure storage may keep the security key after the app is
@@ -203,9 +209,13 @@ in "How long we keep information", or until you ask us to delete them.
 
 ### 6. Scan records and fair-use limits
 
-**What counts as a scan.** One plan successfully processed is one scan. Failed
-reads, page previews, Find Scale and price-sheet imports don't count, and
-re-reading the same plan file in the same estimate is free.
+**What counts as a scan.** One plan successfully processed is one scan. Reads
+that fail or whose result can't be used, page previews, Find Scale and
+price-sheet imports don't count.
+Re-scanning the same plan page in the same estimate is free while that
+estimate has been scanned within the last 3 months. A different page or a
+different plan file counts as a new scan. Editing the job description
+doesn't.
 
 **Scan records.** To count scans against your monthly allowance, give you free
 re-scans of the same plan, and answer billing questions, our server keeps a
@@ -213,24 +223,42 @@ record of each AI plan scan, linked to your install identifier:
 
 - which estimate was scanned (the app's reference number for it, not its name
   or contents);
-- a fingerprint of what you scanned (the plan file and any job description).
-  A fingerprint is a short code worked out from the file. It lets us recognise
-  the same plan again, but the plan can't be rebuilt from it; and
-- when the scan happened, whether it succeeded, and what the AI read cost us.
+- a fingerprint of what you scanned (the plan file, the page and any job
+  description). A fingerprint is a short code worked out from the file. It
+  lets us recognise the same plan again, but the plan can't be rebuilt from
+  it; and
+- when the scan happened, whether it succeeded, which AI model read it, and
+  what the read cost us.
 
-We keep these records linked to your install for the current month and the
-two months before it. After that we de-identify them: we remove the link to
-your install and the plan fingerprint, and keep only the AI cost figures.
+We keep these records linked to your install until 3 months after the
+estimate's last scan, so free re-scans keep working. After that we
+de-identify them: we keep only monthly cost totals, with no install, estimate
+or plan information, for 5 years. A scan that was left unfinished (for
+example, because the connection dropped) is resolved within 7 days.
 
-**Other limits.** To protect the service from abuse and runaway costs, the
-server also keeps:
+**Daily usage record.** Every install that uses AI features has a small usage
+record, kept for about 2 days. It holds this day's count of plan reads whose
+result couldn't be used, the estimated AI cost of your reads that day, your
+Find Scale reads that day, and any cooldown that applies. Only a read whose
+result couldn't be used counts as a failed read. A read that fails because of
+an error at the AI provider, or that you cancel, counts only towards the
+day's usage cost.
 
-- this month's count of scans and AI attempts for each install, for the
+**Plans that keep failing.** If a plan's result can't be used, the server keeps
+a fingerprint of that plan file (not the plan) for about 2 days, so the same
+plan can't be read again and again while it keeps failing.
+
+**Per-network counters.** Some limits apply to each internet connection. For
+these, the server keeps counters under a keyed one-way hash of your IP
+address, for about 2 days. A keyed hash is a scrambled code: the address
+can't be read back from it, but the same address always gives the same code,
+so while it is kept it still relates to your connection. It isn't anonymous.
+
+**Other limits.** The server also keeps:
+
+- this month's count of scans and AI read attempts for each install, for the
   current month only;
-- hourly request limits, in the server's memory;
-- short-lived counters of failed reads, kept for up to 24 hours, linked to
-  your install identifier or IP address and, if one plan keeps failing, to a
-  fingerprint of that plan; and
+- hourly request limits, in the server's memory; and
 - the total AI cost for the whole service each day, which isn't about any
   person, kept for about 13 months.
 
@@ -248,9 +276,9 @@ hosting provider's logs so we can fix bugs.
 Like any internet service, our server and its hosting provider see technical
 information about each request, such as your IP address and the time of the
 request. We use your IP address for rate limiting and abuse protection: in the
-server's memory for hourly limits, and in the short-lived failed-read counters
-described in section 6. Our hosting provider keeps standard request logs under
-its own policies.
+server's memory for hourly limits, and as a keyed one-way hash in the
+per-network counters described in section 6 (kept for about 2 days). Our
+hosting provider keeps standard request logs under its own policies.
 
 ### 9. Subscriptions and payments
 
@@ -266,6 +294,10 @@ When they launch:
   version.
 - Our server may check your subscription status with RevenueCat, using that
   identifier, to decide which plan's limits apply to you.
+- If a subscription can be shared across your devices (this isn't live yet),
+  we keep the store purchase-lineage records needed to apply it to each
+  device. They are kept while the subscription is active and deleted with the
+  install.
 
 ### 10. Camera and photos
 
@@ -282,24 +314,30 @@ way. You can turn these permissions off at any time in your device settings.
 - **Uploaded plans, photos and price sheets** (our server): only while they
   are being processed, and deleted within about 30 minutes. *Why:* to read
   them.
-- **Recovery copy of a scan result**, which can include a picture of the plan
-  page (our server): 24 hours. *Why:* so a dropped connection can recover the
-  result.
-- **Scan records linked to your install** (our server): the current month
-  plus the two previous months. They say which estimates were scanned, with a
+- **Recovery copy of a scan result**, including a picture of the plan page
+  (our server): deleted after 24 hours (in practice, within about 25 hours).
+  *Why:* so a dropped connection can recover the result.
+- **Scan records linked to your install** (our server): until 3 months after
+  the estimate's last scan. They say which estimates were scanned, with a
   fingerprint of the plan file (not the plan itself) and the AI cost. *Why:*
   your scan allowance, free re-scans and billing questions. After that they're
-  de-identified: the link to your install and the plan fingerprint are
-  removed, and only the AI cost figures are kept.
-- **De-identified AI cost records** (our server): 5 years, then deleted.
-  *Why:* business and tax record-keeping. They can't be linked to you.
-- **This month's scan and attempt counts** (our server): the current month
-  only. *Why:* fair-use limits.
+  de-identified. Unfinished scans are resolved within 7 days.
+- **De-identified AI cost records** (our server): kept only as monthly totals,
+  with no install, estimate or plan information, for 5 years, then deleted.
+  *Why:* business and tax record-keeping.
+- **Daily usage record** (our server): about 2 days. It holds the day's count
+  of plan reads whose result couldn't be used, estimated AI usage cost, Find
+  Scale reads and any cooldown. *Why:* daily fair-use limits and abuse
+  protection.
+- **Fingerprints of plans whose result couldn't be used** (our server): about
+  2 days. *Why:* to stop the same failing plan being read again and again.
+- **Per-network counters**, under a keyed one-way hash of your IP address
+  (our server): about 2 days. *Why:* limits for each internet connection.
+- **This month's scan and AI read attempt counts** (our server): the current
+  month only. *Why:* fair-use limits.
 - **iPhone and iPad device security record** (our server): while you use
   SlabIQ, and deleted after 12 months without use. *Why:* to recognise a
   genuine copy of the app on your device.
-- **Failed-read counters** (our server): up to 24 hours. *Why:* to stop
-  repeated failed reads that cost money and could be abuse.
 - **Service-wide daily AI cost totals** (our server, not about any person):
   about 13 months. *Why:* the daily spending cap and tracking our costs.
 - **Server logs and crash reports** (our hosting provider): for our hosting
@@ -308,6 +346,10 @@ way. You can turn these permissions off at any time in your device settings.
 - **Copies at Anthropic**: up to 30 days depending on the model, or up to 2
   years if Anthropic's safety systems flag a request (see "About Anthropic").
   *Why:* Anthropic's own misuse and safety monitoring.
+- **Store purchase-lineage records** (our server, only if subscriptions are
+  shared across devices, which isn't live yet): while the subscription is
+  active, and deleted with the install. *Why:* to apply your subscription to
+  each of your devices.
 - **Purchase records** (Apple, Google and RevenueCat, once paid subscriptions
   launch): under their own policies.
 - **Everything on your device**: until you delete it or uninstall the app.
@@ -407,20 +449,33 @@ We'll respond within 30 days, and we'll email you exactly what we deleted,
 what we kept and why.
 
 **What we delete:** your device security record, your scan and attempt
-counts, your scan records and plan fingerprints, any recovery copies of your
-scan results, and the link between your install and any other records.
+counts, your daily usage record, your scan records and the plan fingerprints
+linked to your install, any recovery copies of your scan results, any store
+purchase-lineage records for your install, and the link between your install
+and any other records.
 
 **What we keep, and why:**
 
-- **De-identified AI cost records**: kept for 5 years for business and tax
-  record-keeping. They can no longer be linked to you.
+- **De-identified AI cost records**: monthly cost totals with no install,
+  estimate or plan information, kept for 5 years for business and tax
+  record-keeping.
 - **Service-wide daily totals**, which aren't about any person.
-- **Server logs**, until they expire under our hosting provider's retention
-  period.
+- **Server logs**, which carry your install identifier (for example, crash
+  reports and error lines), until they expire under our hosting provider's
+  retention period.
+- **Per-network counters**, which are kept under a hashed IP address rather
+  than your install identifier, and any fingerprints of failing plans that
+  aren't linked to your install. Both expire after about 2 days.
 - **Copies at Anthropic**, which Anthropic deletes under its own retention
   (see "About Anthropic").
 - **Purchase records** that Apple, Google and RevenueCat hold under their own
   policies. You can also contact RevenueCat directly about data it holds.
+
+**If you've reinstalled SlabIQ** or moved to a new phone, the identifier the
+app shows now may be a new one. Records made under an earlier identifier can
+only be found with that identifier. If you no longer have it, those records
+are still removed or de-identified on the schedule in "How long we keep
+information".
 
 After a deletion, SlabIQ may need to set up its connection to our server again
 the next time you use an online feature.
