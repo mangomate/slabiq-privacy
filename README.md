@@ -217,7 +217,9 @@ Scale and price-sheet imports don't count. Re-scanning the same plan page in
 the same estimate is free if you scanned that estimate this month or in
 either of the previous two calendar months (UTC). A different page or a
 different plan file counts as a new scan. Editing the job description
-doesn't.
+doesn't. Photos (a camera photo or a picked image) work a little
+differently: a photo and up to 3 retakes in the same estimate count as one
+scan, and a retake that couldn't be read doesn't use one up.
 
 **Scan records.** To count scans against your monthly allowance, give you free
 re-scans of the same plan, and answer billing questions, our server keeps a

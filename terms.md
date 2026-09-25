@@ -63,11 +63,14 @@ Every plan is subject to the fair-use limits in section 4.
 - **What counts as a scan.** One plan successfully processed is one scan.
   Reads that don't produce a usable result (for any reason), page previews,
   Find Scale and price-sheet imports don't count. Re-scanning the same plan
-  page in the same estimate is free if you scanned that estimate this month
-  or in either of the previous two calendar months (UTC). A different page or a
+  page in the same estimate is free if you scanned that estimate this month or
+  in either of the previous two calendar months (UTC). A different page or a
   different plan file counts as a new scan. Editing the job description
-  doesn't. Monthly allowances start again at the beginning of each calendar
-  month, counted in UTC (10am on the 1st in Queensland).
+  doesn't. Photos (a camera photo or a picked image) work a little
+  differently: a photo and up to 3 retakes in the same estimate count as one
+  scan, and a retake that couldn't be read doesn't use one up. Monthly
+  allowances start again at the beginning of each calendar month, counted in
+  UTC (10am on the 1st in Queensland).
 - **Subscriptions.** Pro and Max are auto-renewing subscriptions sold through
   the Apple App Store or Google Play. The app shows each plan's price, billing
   period and inclusions before you buy. The price shown by the store at
