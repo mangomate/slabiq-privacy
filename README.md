@@ -355,7 +355,7 @@ way. You can turn these permissions off at any time in your device settings.
 - **Service-wide daily AI cost totals** (our server, not about any person):
   about 13 months. *Why:* the daily spending cap and tracking our costs.
 - **Server logs and crash reports** (our hosting provider): for our hosting
-  provider's log-retention period. <!-- CONFIRM: Railway log retention -->
+  provider's log-retention period (currently 7 days).
   *Why:* fixing bugs and keeping the service secure.
 - **Copies at Anthropic**: up to 30 days depending on the model, or up to 2
   years if Anthropic's safety systems flag a request (see "About Anthropic").
@@ -413,8 +413,8 @@ Some information is sent to, and processed by, providers outside Australia:
 - **Anthropic** processes plans, page images, job descriptions and price
   sheets in the **United States**.
 - **Railway**, our hosting provider, runs our server and holds its records and
-  logs outside Australia, mainly in the **United States**.
-  <!-- CONFIRM: Railway region -->
+  logs outside Australia, mainly in the **United States** (Railway's US West
+  region).
 - **RevenueCat, Apple and Google** (once paid subscriptions launch) may process
   purchase and subscription information in the United States and other
   countries.
